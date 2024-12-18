@@ -5,6 +5,10 @@ export default function LoginScreen() {
   return (
     <View>
       <Text>LoginScreen</Text>
+      <Text>LoginScreen</Text>
+      <Text>LoginScreen</Text>
+      <Text>LoginScreen</Text>
+      <Text>LoginScreen</Text>
     </View>
   );
 }

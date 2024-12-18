@@ -12,6 +12,7 @@ import FireworksPostDetailScreen from "../screens/community/FireworksPostDetailS
 import FreeDiscussionCommunityScreen from "../screens/community/FreeDiscussionCommunityScreen";
 import CongestionCommunityScreen from "../screens/community/CongestionCommunityScreen";
 import WritePostScreen from "../screens/community/WritePostScreen";
+import DetailInfoScreen from "../screens/map/DetailInfoScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -85,6 +86,11 @@ export default function StackNavigator() {
           name="WritePost"
           component={WritePostScreen}
           options={{ title: "글쓰기" }}
+        />
+        <Stack.Screen
+          name="DetailInfo"
+          component={DetailInfoScreen}
+          options={{ title: "세부 정보", headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>

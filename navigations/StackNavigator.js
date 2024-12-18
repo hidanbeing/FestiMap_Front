@@ -5,31 +5,33 @@ import TabNavigator from "./TabNavigator";
 import SplashScreen from "../screens/splash/SplashScreen";
 import LoginScreen from "../screens/login/LoginScreen";
 
+const Stack = createNativeStackNavigator();
+
 export default function StackNavigator() {
   const [savedFestivals, setSavedFestivals] = useState([]); // 저장된 축제 상태 관리
-  const Stack = createNativeStackNavigator();
-
-  <NavigationContainer>
-    <Stack.Navigator initialRouteName="Splash">
-      <Stack.Screen
-        name="Splash"
-        component={SplashScreen}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Login"
-        component={LoginScreen}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen name="Main" options={{ headerShown: false }}>
-        {(props) => (
-          <TabNavigator
-            {...props}
-            savedFestivals={savedFestivals}
-            setSavedFestivals={setSavedFestivals}
-          />
-        )}
-      </Stack.Screen>
-    </Stack.Navigator>
-  </NavigationContainer>;
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Splash">
+        <Stack.Screen
+          name="Splash"
+          component={SplashScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen name="Main" options={{ headerShown: false }}>
+          {(props) => (
+            <TabNavigator
+              {...props}
+              savedFestivals={savedFestivals}
+              setSavedFestivals={setSavedFestivals}
+            />
+          )}
+        </Stack.Screen>
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }

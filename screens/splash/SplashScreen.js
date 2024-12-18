@@ -5,6 +5,10 @@ export default function SplashScreen() {
   return (
     <View>
       <Text>SplashScreen</Text>
+      <Text>SplashScreen</Text>
+      <Text>SplashScreen</Text>
+      <Text>SplashScreen</Text>
+      <Text>SplashScreen</Text>
     </View>
   );
 }

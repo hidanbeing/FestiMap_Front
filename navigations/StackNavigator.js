@@ -4,6 +4,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import TabNavigator from "./TabNavigator";
 import SplashScreen from "../screens/splash/SplashScreen";
 import LoginScreen from "../screens/login/LoginScreen";
+import SavedFestivalListScreen from "../screens/home/sub/SavedFestivalListScreen";
+import FestivalListScreen from "../screens/home/sub/FestivalListScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +30,32 @@ export default function StackNavigator() {
               {...props}
               savedFestivals={savedFestivals}
               setSavedFestivals={setSavedFestivals}
+            />
+          )}
+        </Stack.Screen>
+        {/* <Stack.Screen name="Main" options={{ headerShown: false }}>
+          {(props) => (
+            <TabNavigator
+              {...props}
+              savedFestivals={savedFestivals}
+              setSavedFestivals={setSavedFestivals}
+            />
+          )}
+        </Stack.Screen> */}
+        <Stack.Screen name="FestivalList" options={{ headerShown: false }}>
+          {(props) => (
+            <FestivalListScreen
+              {...props}
+              savedFestivals={savedFestivals}
+              setSavedFestivals={setSavedFestivals}
+            />
+          )}
+        </Stack.Screen>
+        <Stack.Screen name="SavedFestivals" options={{ headerShown: false }}>
+          {(props) => (
+            <SavedFestivalListScreen
+              {...props}
+              savedFestivals={savedFestivals}
             />
           )}
         </Stack.Screen>

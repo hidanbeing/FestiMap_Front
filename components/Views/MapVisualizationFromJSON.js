@@ -67,7 +67,7 @@ const MapVisualizationFromJSON = () => {
         // }}
       >
         <View style={styles.timeContainer}>
-          <Text style={styles.timeText}>실시간 📹</Text>
+          <Text style={styles.timeText}>실시간</Text>
           <Text style={styles.text}>🔴경고🟠주의🟡관심🟢여유</Text>
         </View>
         {data.map((item, index) => {

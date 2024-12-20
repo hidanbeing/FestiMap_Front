@@ -22,8 +22,8 @@ export default function TabNavigator({ savedFestivals, setSavedFestivals }) {
           }
           return <Ionicons name={iconName} size={size} color={color} />;
         },
-        tabBarActiveTintColor: "gray",
-        tabBarInactiveTintColor: "black",
+        tabBarActiveTintColor: "black",
+        tabBarInactiveTintColor: "gray",
       })}
     >
       <Tab.Screen name="Home" options={{ headerShown: false }}>

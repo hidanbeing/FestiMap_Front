@@ -4,6 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 import HomeScreen from "../screens/home/HomeScreen";
 import MapScreen from "../screens/map/MapScreen";
 import MyPageScreen from "../screens/mypage/MyPageScreen";
+import RouteScreen from "../screens/route/RouteScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -14,11 +15,13 @@ export default function TabNavigator({ savedFestivals, setSavedFestivals }) {
         tabBarIcon: ({ color, size }) => {
           let iconName;
           if (route.name === "Home") {
-            iconName = "home-outline"; // 집 모양 아이콘
+            iconName = "home-outline";
           } else if (route.name === "Map") {
-            iconName = "location-outline"; // 지도 핀 모양 아이콘
+            iconName = "map-outline";
           } else if (route.name === "MyPage") {
-            iconName = "person-outline"; // 사람 모양 아이콘
+            iconName = "person-outline";
+          } else if (route.name === "Route") {
+            iconName = "navigate-outline";
           }
           return <Ionicons name={iconName} size={size} color={color} />;
         },
@@ -38,6 +41,11 @@ export default function TabNavigator({ savedFestivals, setSavedFestivals }) {
       <Tab.Screen
         name="Map"
         component={MapScreen}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="Route"
+        component={RouteScreen}
         options={{ headerShown: false }}
       />
       <Tab.Screen

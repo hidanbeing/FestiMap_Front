@@ -173,7 +173,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#ffffff",
-    paddingHorizontal: 20,
   },
   header: {
     flexDirection: "row",
@@ -181,6 +180,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 40,
     marginBottom: 10,
+    paddingHorizontal: 20,
   },
   maintitle: {
     fontSize: 40,

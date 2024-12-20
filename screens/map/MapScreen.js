@@ -28,7 +28,7 @@ export default function MapScreen() {
   const notifications = [
     { id: "1", message: "여의도 지역 혼잡도가 높습니다." },
     { id: "2", message: "19시 이후 대중교통 이용객이 증가하고 있습니다." },
-    { id: "3", message: "30대 방문자가 많은 지역: 여의나루공원" },
+    // { id: "3", message: "30대 방문자가 많은 지역: 여의나루공원" },
   ];
 
   const noti = [

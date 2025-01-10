@@ -48,6 +48,7 @@ export default function TabNavigator({ savedFestivals, setSavedFestivals }) {
         component={RouteScreen}
         options={{ headerShown: false }}
       />
+
       <Tab.Screen
         name="MyPage"
         component={MyPageScreen}

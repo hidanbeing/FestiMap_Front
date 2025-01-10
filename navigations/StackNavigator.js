@@ -13,6 +13,7 @@ import FreeDiscussionCommunityScreen from "../screens/community/FreeDiscussionCo
 import CongestionCommunityScreen from "../screens/community/CongestionCommunityScreen";
 import WritePostScreen from "../screens/community/WritePostScreen";
 import DetailInfoScreen from "../screens/map/DetailInfoScreen";
+import EscapeScreen from "../screens/route/EscapeRoute";
 
 const Stack = createNativeStackNavigator();
 
@@ -90,6 +91,11 @@ export default function StackNavigator() {
         <Stack.Screen
           name="DetailInfo"
           component={DetailInfoScreen}
+          options={{ title: "세부 정보", headerShown: false }}
+        />
+        <Stack.Screen
+          name="Escape"
+          component={EscapeScreen}
           options={{ title: "세부 정보", headerShown: false }}
         />
       </Stack.Navigator>

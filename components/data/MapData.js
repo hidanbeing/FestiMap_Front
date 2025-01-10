@@ -9,7 +9,8 @@ export const regions = [
       { latitude: 37.5285, longitude: 126.9305 },
       { latitude: 37.5285, longitude: 126.9265 },
     ],
-    color: "rgba(255, 255, 0, 0.3)",
+    // color: "rgba(255, 255, 0, 0.3)",
+    color: "rgba(255, 127, 0, 0.5)", // 초록 (낮은 혼잡도)
   },
   {
     id: 2,

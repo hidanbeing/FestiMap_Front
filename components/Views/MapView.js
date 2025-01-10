@@ -28,11 +28,11 @@ export default function MapVieww() {
       <View style={styles.header}>
         {toggleValue ? (
           <Text style={styles.text}>
-            <Text style={{ fontWeight: "bold" }}>위험도 지도</Text>{" "}
+            <Text style={{ fontWeight: "bold" }}>혼잡도 지도</Text>{" "}
           </Text>
         ) : (
           <Text style={styles.text}>
-            <Text style={{ fontWeight: "bold" }}>혼잡도 지도</Text>{" "}
+            <Text style={{ fontWeight: "bold" }}>위험도 지도</Text>{" "}
             🔴경고🟠주의🟡관심🟢여유
           </Text>
         )}

@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
   },
   detailsContainer: {
     flex: 1,
-    // paddingHorizontal: 20,
+    paddingHorizontal: 20,
     paddingTop: 10,
   },
   subTabContainer: {

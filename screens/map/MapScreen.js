@@ -14,12 +14,15 @@ import SlideModal from "../../components/Modal/SlideModal";
 import MapView from "../../components/Views/MapView";
 import DetailView from "../../components/Views/DetailView";
 import MapVisualizationFromJSON from "../../components/Views/MapVisualizationFromJSON";
-
+import { useNavigation } from "@react-navigation/native";
 export default function MapScreen() {
+  const navigation = useNavigation();
   const [viewType, setViewType] = useState("map"); // "map" or "info" or "submap"
   const [modalVisible, setModalVisible] = useState(false);
 
   const [notiVisible, setnotiVisible] = useState(false);
+
+  const [modalVisible2, setModalVisible2] = useState(false);
 
   const toggleView = (type) => {
     setViewType(type);
@@ -28,6 +31,12 @@ export default function MapScreen() {
   const notifications = [
     { id: "1", message: "여의도 지역 혼잡도가 높습니다." },
     { id: "2", message: "19시 이후 대중교통 이용객이 증가하고 있습니다." },
+    // { id: "3", message: "30대 방문자가 많은 지역: 여의나루공원" },
+  ];
+
+  const notifications2 = [
+    { id: "1", message: "현재 위치한 지역이 밀집되어 위험합니다." },
+    { id: "2", message: "추천 경로를 확인하시겠습니까?" },
     // { id: "3", message: "30대 방문자가 많은 지역: 여의나루공원" },
   ];
 
@@ -65,11 +74,19 @@ export default function MapScreen() {
         >
           <Ionicons name="notifications-outline" size={28} color="#fff" />
         </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.notificationButton}
+          onPress={() => setModalVisible2(true)}
+        >
+          <Ionicons name="notifications-outline" size={28} color="#fff" />
+        </TouchableOpacity>
+
         <TouchableOpacity
           style={styles.notificationButton}
           onPress={() => setnotiVisible(true)}
         >
-          <Ionicons name="notifications-outline" size={28} color="#000" />
+          <Ionicons name="notifications-outline" size={28} color="#999" />
         </TouchableOpacity>
       </View>
 
@@ -142,7 +159,7 @@ export default function MapScreen() {
       >
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>알림</Text>
+            <Text style={styles.modalTitle}>전지역 알림</Text>
             <FlatList
               data={notifications}
               renderItem={({ item }) => (
@@ -151,8 +168,43 @@ export default function MapScreen() {
               keyExtractor={(item) => item.id}
             />
             <TouchableOpacity
-              style={styles.closeButton}
+              style={styles.closeButton2}
               onPress={() => setModalVisible(false)}
+            >
+              <Text style={styles.closeButtonText}>닫기</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible2}
+        onRequestClose={() => setModalVisible2(false)}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalTitle}>알림</Text>
+            <FlatList
+              data={notifications2}
+              renderItem={({ item }) => (
+                <Text style={styles.notificationItem}>{item.message}</Text>
+              )}
+              keyExtractor={(item) => item.id}
+            />
+            <TouchableOpacity
+              style={styles.accButton}
+              onPress={() => {
+                navigation.navigate("Escape");
+                setModalVisible2(false);
+              }}
+            >
+              <Text style={styles.closeButtonText}>확인</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.closeButton}
+              onPress={() => setModalVisible2(false)}
             >
               <Text style={styles.closeButtonText}>닫기</Text>
             </TouchableOpacity>
@@ -233,9 +285,24 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   closeButton: {
-    marginTop: 20,
+    marginTop: 5,
+    padding: 10,
+
+    backgroundColor: "gray",
+    borderRadius: 5,
+    alignItems: "center",
+  },
+  closeButton2: {
+    marginTop: 5,
     padding: 10,
     backgroundColor: "#007BFF",
+    borderRadius: 5,
+    alignItems: "center",
+  },
+  accButton: {
+    marginTop: 5,
+    padding: 10,
+    backgroundColor: "red",
     borderRadius: 5,
     alignItems: "center",
   },

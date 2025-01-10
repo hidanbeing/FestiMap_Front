@@ -16,17 +16,9 @@ export default function RouteScreen({ navigation }) {
     console.log("BottomSheet Index: ", index);
   }, []);
 
-  const [selectedRoute, setSelectedRoute] = useState(0);
   const [showRoute, setShowRoute] = useState(false);
 
   const routeCoordinates = routeData;
-
-  const routeDetails = useMemo(
-    () => [
-      { duration: "10분", population: "유동인구 수 6/m²", status: "혼잡" },
-    ],
-    []
-  );
 
   const handleFindRoute = () => {
     setShowRoute(true);
@@ -60,39 +52,34 @@ export default function RouteScreen({ navigation }) {
           title="여의도"
           description="여의도 불꽃놀이 축제 위치"
         />
+
+        {/* 경로 폴리라인에 테두리 효과 적용 */}
         {showRoute && (
-          <Polyline
-            coordinates={routeCoordinates}
-            strokeColor={selectedRoute === 0 ? "#007bff" : "#ccc"}
-            strokeWidth={4}
-          />
+          <>
+            {/* 아래쪽 하얀색 테두리 (두꺼운 선) */}
+            <Polyline
+              coordinates={routeCoordinates}
+              strokeColor="#fff"
+              strokeWidth={12}
+            />
+            {/* 실제 경로 색상 (위에 올라가는 얇은 선) */}
+            <Polyline
+              coordinates={routeCoordinates}
+              strokeColor="#007bff"
+              strokeWidth={5}
+            />
+          </>
         )}
       </MapView>
 
       {showRoute && (
         <View style={styles.bottomBar}>
-          {routeDetails.map((details, index) => (
-            <TouchableOpacity
-              key={index}
-              style={[
-                styles.routeInfoBox,
-                selectedRoute === index && styles.selectedRouteBox,
-              ]}
-              onPress={() => setSelectedRoute(index)}
-            >
-              <Text style={styles.populationText}>{details.population}</Text>
-              <Text
-                style={
-                  details.status === "혼잡"
-                    ? styles.statusTextCongested
-                    : styles.statusTextSmooth
-                }
-              >
-                {details.status}
-              </Text>
-              <Text style={styles.durationText}>{details.duration}</Text>
-            </TouchableOpacity>
-          ))}
+          <View style={styles.routeInfoBox}>
+            <Text style={styles.populationText}>목적지 까지</Text>
+            <Text style={styles.statusTextSmooth}>원활</Text>
+            <Text style={styles.durationText}>13분</Text>
+            <Text style={styles.distanceText}>1112.40m</Text>
+          </View>
         </View>
       )}
     </View>
@@ -105,49 +92,55 @@ const styles = StyleSheet.create({
   },
   bottomBar: {
     position: "absolute",
-    bottom: 30,
+    bottom: 20,
     left: 20,
     right: 20,
     flexDirection: "row",
-    justifyContent: "space-around",
-    backgroundColor: "#fff",
-    padding: 15,
-    borderRadius: 10,
-    elevation: 5,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
+    justifyContent: "center",
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderRadius: 15,
     zIndex: 2,
   },
   routeInfoBox: {
-    flex: 1,
-    alignItems: "center",
+    width: 180,
     justifyContent: "center",
-    padding: 10,
-    backgroundColor: "#f1f1f1",
-    borderRadius: 8,
+    padding: 15,
+    borderRadius: 12,
     marginHorizontal: 5,
-  },
-  selectedRouteBox: {
-    backgroundColor: "#007bff",
+    borderColor: "#88888880",
+    borderWidth: 1,
+    backgroundColor: "#fff",
+    // 내부 박스 그림자
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 3,
   },
   populationText: {
-    fontSize: 12,
-    color: "#999",
+    fontSize: 18,
+    color: "#555",
     marginBottom: 5,
-  },
-  statusTextCongested: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "#ff0000",
+    fontWeight: "600",
+    paddingLeft: 5,
   },
   statusTextSmooth: {
-    fontSize: 16,
+    fontSize: 25,
     fontWeight: "bold",
     color: "#00a000",
+    marginBottom: 5,
+    paddingLeft: 10,
   },
   durationText: {
+    paddingLeft: 10,
+    fontSize: 25,
+    fontWeight: "bold",
+    color: "#000",
+    marginBottom: 5,
+  },
+  distanceText: {
+    paddingLeft: 10,
     fontSize: 14,
     fontWeight: "bold",
     color: "#000",
@@ -161,12 +154,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#fff",
     padding: 10,
-    borderRadius: 10,
-    elevation: 5,
+    borderRadius: 15,
+    // 그림자 강화
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 4,
     zIndex: 2,
   },
   maintitle: {
@@ -185,13 +179,20 @@ const styles = StyleSheet.create({
     borderColor: "#ccc",
     borderWidth: 1,
     borderRadius: 5,
+    backgroundColor: "#f9f9f9",
   },
   findRouteButton: {
     marginLeft: 10,
     backgroundColor: "#007bff",
     paddingVertical: 10,
     paddingHorizontal: 15,
-    borderRadius: 5,
+    borderRadius: 8,
+    // 버튼 그림자
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.25,
+    shadowRadius: 2,
+    elevation: 3,
   },
   findRouteButtonText: {
     color: "#fff",
